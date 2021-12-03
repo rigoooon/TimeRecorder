@@ -1,0 +1,54 @@
+週の合計時間 できた
+前日との差 できた
+全ての合計時間 できた
+グラフ化 
+pandas
+matplotlib
+一週間の日ごとの時間を一括表示 dekita
+直接時間を入力
+タイマーのUI
+tkinterでストップウォッチ実装 できた
+スタート、ストップ、リセット、記録ボタンを作る　できた
+記録ボタンを押すと秒単位の時間をdata/year/month/time_record.csvに記録 できた
+pandasに変えるかどうか
+時間で通知
+LINEに送信
+グラフの種類は？
+週間、月間、年間の三つか
+
+import requests
+token = "53X5z4FuxaU1Oi6nmnOn2Crm08hg6HyEfrcVO6L5Mqf"
+url = "https://notify-api.line.me/api/notify"
+headers = {"Authorization": "Bearer " + token}
+payload = {"message": "テストメッセージだよ"}
+requests.post(url, headers=headers, data=payload)
+
+
+stopwatch.pyを実行してストップウォッチで記録する
+すべての記録を一つのcsvファイルに集約しても行ける説ある
+つまり、すべての記録のdateの列をfor文に突っ込む
+if文で2021年の記録を取るならif df.index.year == datetime(2021)とか
+今月ならif df.index.month == datetime.now().month
+でもfor文は実行に時間かかるらしいから年でわけるべきか
+
+pandasのsumでsecondの合計とってきて、返り値でh m sの形で持ってきて、それを
+streamlitで表示
+グラフも
+streamlit run main.py
+
+
+グラフ表示させるやつメモ
+""" present_time = datetime.now()
+path = f'../data/{present_time.year}/'
+df = pd.read_csv(f'{path}time_record.csv', names = ['date', 'time', 'second'],
+                     index_col=['date'], parse_dates=['date']) 
+df_sum = df.groupby('date').sum()
+st.line_chart(df_sum) """
+
+#text = st.sidebar.text_input('一日の目標時間を設定してください。')
+
+#st.write(text)
+
+過去30日間の日毎の時間をプルダウンで表示できんか
+pip list -o
+pip install -U パッケージ名
